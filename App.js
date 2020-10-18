@@ -13,8 +13,13 @@ const App = () => {
     {id: uuid4(), text: 'Juice'},
   ])
 
+ // adding delete function
 
-
+const deleteItem = (id) => {
+  setItems(prevItems => {
+    return prevItems.filter(item => item.id != id);
+  })
+}
 
 
   return (
@@ -24,7 +29,9 @@ const App = () => {
 
       <FlatList
         data={items}
-        renderItem={({item}) => <ListItem item={item} />}
+        renderItem={({item}) => (
+           <ListItem item={item} deleteItem={deleteItem}/>
+        )}
       />
     </View>
   )
