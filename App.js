@@ -24,7 +24,7 @@ const deleteItem = (id) => {
 
 //add the add item function here 
 
-// a little bit of authentication so you cant add an empty value
+// a little bit of authentication so you cant add an empty value. Having issues with the alert on androids. 
 
   const addItem = (text) => {
     if (!text) {
