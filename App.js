@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, Text, View, StleSheet, FlatList } from 'react-native';
+import Header from './components/Header';
+import ListItem from './components/ListItem';
+import { v4 as uuid4} from 'uuid';
 
-export default function App() {
+
+const App = () => {
+  const [items, setItems] = useState([
+    {id: uuid4(), text: 'Milk'},
+    {id: uuid4(), text: 'Eggs'},
+    {id: uuid4(), text: 'Bread'},
+    {id: uuid4(), text: 'Juice'},
+  ])
+
+
+
+
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+            {/* using props for title for practice. not necessary */}
+      <Header title="SHOPPING LIST"/>
+
+      <FlatList
+        data={items}
+        renderItem={({item}) => <ListItem item={item} />}
+      />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    paddingTop: 60, 
+    // added padding top because iphone 11 would block the top
+  }
+}); 
+
+
+export default App;
