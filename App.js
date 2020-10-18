@@ -23,6 +23,7 @@ const deleteItem = (id) => {
 }
 
 //add the add item function here 
+
 // a little bit of authentication so you cant add an empty value
 
   const addItem = (text) => {
