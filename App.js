@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, StleSheet, FlatList } from 'react-native';
+import { StyleSheet, Text, View, StleSheet, FlatList, Alert } from 'react-native';
+import { v4 as uuid4} from 'uuid';
 import Header from './components/Header';
 import ListItem from './components/ListItem';
-import { v4 as uuid4} from 'uuid';
+import AddItem from './components/AddItem';
 
 
 const App = () => {
@@ -21,11 +22,25 @@ const deleteItem = (id) => {
   })
 }
 
+//add the add item function here 
+// a little bit of authentication so you cant add an empty value
+
+  const addItem = (text) => {
+    if (!text) {
+      Alert.alert('Error', 'Please enter an item', {text: 'Ok'});
+    } else {
+      setItems(prevItems => {
+        return [{id: uuid4(), text}, ...prevItems];
+      });  
+    }
+  };
 
   return (
     <View style={styles.container}>
             {/* using props for title for practice. not necessary */}
       <Header title="SHOPPING LIST"/>
+
+      <AddItem addItem={addItem} />
 
       <FlatList
         data={items}
